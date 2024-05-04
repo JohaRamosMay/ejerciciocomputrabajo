@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rompecabezas en la Web con Función de Potencia</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <h1>Rompecabezas en la Web con Función de Potencia</h1>
+
+  <div id="inputContainer">
+    <p>Ingrese un número para resolver el rompecabezas:</p>
+    <input type="number" id="inputNumber">
+  </div>
+  <div>
+    <button primary onclick="resolverRompecabezas()">Resolver Rompecabezas</button>
+  </div>
+  <div>
+    <button onclick="calcularPotencia()">Calcular Potencia</button>
+  </div>
+
+  <p>Resultado:</p>
+  <p><span id="result"></span></p>
+
+  <script>
+    function solucionarRompecabezas(N) {
+      var var_A = 1;
+      var var_B = 1;
+      var var_C = 1;
+      var var_D = 1;
+
+      for (var i = 1; i <= N; i++) {
+        var resultado = 3 * var_D + 1 * var_C + 4 * var_B + 1 * var_A;
+        var_A = var_B;
+        var_B = var_C;
+        var_C = var_D;
+        var_D = resultado;
+      }
+
+      return var_D % 10000000000; // últimos 10 dígitos de var_D
+    }
+
+    function resolverRompecabezas() {
+      var input = document.getElementById("inputNumber").value;
+      var result = solucionarRompecabezas(parseInt(input));
+      document.getElementById("result").textContent = "Resultado del rompecabezas: " + result;
+    }
+
+    function pot(base, exponente) {
+      return Math.pow(base, exponente);
+    }
+
+    function calcularPotencia() {
+      var base = parseInt(prompt("Ingrese la base:"));
+      var exponente = parseInt(prompt("Ingrese el exponente:"));
+      var result = pot(base, exponente);
+      document.getElementById("result").textContent = "Resultado de la potencia: " + result;
+    }
+  </script>
+
+</body>
+
+</html>
